@@ -8,7 +8,7 @@ dotenv.config();
 connectDB();
 const app = express();
 app.use(express.json());
-app.use(bodyParser.json())
+app.use(bodyParser.json()) //parse the json data into javascript object
 app.use(cors())
 app.use("/auth",router)
 const PORT = process.env.PORT || 8080;

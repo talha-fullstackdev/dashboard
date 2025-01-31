@@ -1,10 +1,7 @@
 import './App.css'
+import AllRoutes from './routes/AllRoutes'
 function App() {
-  return (
-    <>
-    <h1 className='text-lf'>helo</h1>
-    </>
-  )
+  return ( <AllRoutes/> )
 }
 
 export default App

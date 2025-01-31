@@ -1,6 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
+import useTitle from '../components/UseTitle';
 const SignUpPage = () => {
+  useTitle("signup page")
   const navigate = useNavigate()
   const gobackHome =()=>{
     navigate("/")

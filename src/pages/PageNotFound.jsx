@@ -1,5 +1,5 @@
 import React from 'react';
-import useTitle from '../components/UseTitle';
+import useTitle from '../hooks/UseTitle';
 import { useNavigate } from 'react-router';
 const PageNotFound = () => {
   const navigate = useNavigate()

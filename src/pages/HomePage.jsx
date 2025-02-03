@@ -1,5 +1,5 @@
 import React from 'react'
-import useTitle from '../components/UseTitle'
+import useTitle from '../hooks/UseTitle'
 const HomePage = () => {
   useTitle("Home Page")
   return (

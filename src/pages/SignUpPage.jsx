@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
-import useTitle from '../components/UseTitle';
+import useTitle from '../hooks/UseTitle';
 const SignUpPage = () => {
   useTitle("signup page")
   const navigate = useNavigate()

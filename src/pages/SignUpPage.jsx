@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import useTitle from "../hooks/UseTitle";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 const SignUpPage = () => {
   const navigate = useNavigate();
   const nameRef = useRef();
@@ -17,7 +18,7 @@ const SignUpPage = () => {
     };
     const { name, email, password } = userSignupData;
     if (!name || !email || !password) {
-      return alert("Please fill all the fields");
+      toast.error("Please fill all the fields");
     }
     try {
       const url = "http://localhost:8080/auth/signup";
@@ -31,7 +32,7 @@ const SignUpPage = () => {
       const result = await response.json();
       const { success, message, error } = result;
       if (success) {
-        alert("signup succesfull redirecting to login page");
+        toast.success("signup succesfull redirecting to login page");
         setTimeout(() => {
           navigate("/login");
         }, 2000);

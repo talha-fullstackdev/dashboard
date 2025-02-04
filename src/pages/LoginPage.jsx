@@ -14,10 +14,10 @@ const LoginPage = () => {
       email: emailRef.current?.value,
       password: passwordRef.current?.value,
     };
-    const { email, password } = userLoginData;
-    if (!email || !password) {
-      toast.error("Please enter both email and password to login");
-    }
+    // const { email, password } = userLoginData;
+    // if (!email || !password) {
+    //   // toast.error("Please enter both email and password to login");
+    // }
     try {
       const url = "http://localhost:8080/auth/login";
       const response = await fetch(url, {
@@ -30,13 +30,15 @@ const LoginPage = () => {
       const result = await response.json();
       const { success, message, jwtToken, name, error } = result;
       if (success) {
-        toast.success("login succes redirecting to home page");
-        localStorage.setItem("token", jwtToken);
-        localStorage.setItem("loggedInUser", name);
-
         setTimeout(() => {
           navigate("/home");
         }, 2000);
+        toast.success("login succes redirecting to home page");
+        localStorage.setItem("token", jwtToken);
+        localStorage.setItem("loggedInUser", name);
+        emailRef.current.value = "";   // Reset fields after successful login
+        passwordRef.current.value = "";
+       
       } else if (error) {
         const errorDetails = error?.details[0].message;
         toast.error(errorDetails);
@@ -46,11 +48,7 @@ const LoginPage = () => {
       }
     } catch (err) {
       console.error(err);
-    }
-
-    // Reset fields after successful login
-    emailRef.current.value = "";
-    passwordRef.current.value = "";
+    } 
   };
   const goToSignUp = () => {
     navigate("/signup");
@@ -60,7 +58,6 @@ const LoginPage = () => {
     goToSignUp,
     emailRef,
     passwordRef
-
   }
 
   return (

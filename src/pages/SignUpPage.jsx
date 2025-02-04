@@ -21,6 +21,7 @@ const SignUpPage = () => {
     if (!name || !email || !password) {
       toast.error("Please fill all the fields");
     }
+
     try {
       const url = "http://localhost:8080/auth/signup";
       const response = await fetch(url, {
@@ -32,37 +33,34 @@ const SignUpPage = () => {
       });
       const result = await response.json();
       const { success, message, error } = result;
+
       if (success) {
-        toast.success("signup succesfull redirecting to login page");
         setTimeout(() => {
           navigate("/login");
         }, 2000);
+        toast.success("signup succesfull redirecting to login page");
+        nameRef.current.value = "";
+        emailRef.current.value = "";
+        passwordRef.current.value = "";
       } else if (error) {
         const errorDetails = error?.details[0].message;
-        console.log(errorDetails);
+        toast.error(errorDetails);
       } else if (!success) {
         console.log(message);
       }
-
-      console.log(result);
     } catch (err) {
       console.error(err);
     }
-    nameRef.current.value = "";
-    emailRef.current.value = "";
-    passwordRef.current.value = "";
   };
 
   const properties = {
     handleSignup,
     nameRef,
     emailRef,
-    passwordRef
-  }
+    passwordRef,
+  };
 
-  return (
-  <SignUpUIComponent properties={properties}/>
-  );
+  return <SignUpUIComponent properties={properties} />;
 };
 
 export default SignUpPage;

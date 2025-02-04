@@ -4,7 +4,6 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
 const HomePage = () => {
   const navigate = useNavigate();
-  useTitle("Home Page");
   const [loginUser, setLoginUser] = useState("");
   useEffect(() => {
     setLoginUser(localStorage.getItem("loggedInUser"));
@@ -15,6 +14,7 @@ const HomePage = () => {
       navigate("/login")
     },2000)
   };
+  useTitle(`${loginUser} home page`);
   return (
     <div>
       <h1 className="text-4xl mb-4 font-bold">

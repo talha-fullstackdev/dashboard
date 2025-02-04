@@ -10,6 +10,8 @@ const HomePage = () => {
   }, []);
   const handleLogout = () => {
     toast.error("logout");
+    localStorage.removeItem("token")
+    localStorage.removeItem("loggedInUser")
     setTimeout(()=>{
       navigate("/login")
     },2000)

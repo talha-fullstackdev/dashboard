@@ -46,6 +46,8 @@ const LoginPage = () => {
         return;
       } else if (!success) {
         toast.error(message);
+        emailRef.current.value = "";   // Reset fields after successful login
+        passwordRef.current.value = "";
       }
     } catch (err) {
       console.error(err);

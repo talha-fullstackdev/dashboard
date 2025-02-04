@@ -10,6 +10,7 @@ const LoginPageUI = ({properties}) => {
       <h1 className="text-2xl font-bold mb-4 text-center">Login</h1>
 
       <input
+        autoFocus
         ref={emailRef}
         type="email"
         placeholder="Enter your email"

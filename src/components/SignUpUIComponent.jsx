@@ -10,7 +10,8 @@ const SignUpUIComponent = ({properties}) => {
     >
       <h1 className="text-2xl font-bold mb-4 text-center">Sign Up</h1>
 
-      <input
+      <input 
+        autoFocus
         ref={nameRef}
         type="text"
         placeholder="Enter your name"

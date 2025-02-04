@@ -14,10 +14,11 @@ const LoginPage = () => {
       email: emailRef.current?.value,
       password: passwordRef.current?.value,
     };
-    // const { email, password } = userLoginData;
-    // if (!email || !password) {
-    //   // toast.error("Please enter both email and password to login");
-    // }
+    const { email, password } = userLoginData;
+    if (!email || !password) {
+      toast.error("Please enter both email and password to login");
+      return
+    }
     try {
       const url = "http://localhost:8080/auth/login";
       const response = await fetch(url, {

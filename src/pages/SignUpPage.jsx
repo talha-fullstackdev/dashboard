@@ -20,6 +20,7 @@ const SignUpPage = () => {
     const { name, email, password } = userSignupData;
     if (!name || !email || !password) {
       toast.error("Please fill all the fields");
+      return
     }
 
     try {
@@ -46,7 +47,12 @@ const SignUpPage = () => {
         const errorDetails = error?.details[0].message;
         toast.error(errorDetails);
       } else if (!success) {
+        toast.error(message);
         console.log(message);
+        nameRef.current.value = "";
+        emailRef.current.value = "";
+        passwordRef.current.value = "";
+
       }
     } catch (err) {
       console.error(err);

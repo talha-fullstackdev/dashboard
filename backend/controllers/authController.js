@@ -52,7 +52,7 @@ const login = async (req, res) => {
       name: user.name,
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
     res.status(500).json({ msg: "Server error!", success: false });
   }
 };

@@ -2,6 +2,9 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
+import { FaArrowAltCircleRight } from "react-icons/fa";
+import { FaArrowAltCircleLeft } from "react-icons/fa";
+
 
 const DashboardLayout = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -33,9 +36,10 @@ const DashboardLayout = ({ children }) => {
           )}
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="text-white focus:outline-none"
+            className="text-white focus:outline-none cursor-pointer"
           >
-            {sidebarOpen ? "◀" : "▶"}
+            {sidebarOpen ? <FaArrowAltCircleLeft /> : <FaArrowAltCircleRight />
+            }
           </button>
         </div>
         <div className="mt-6">
@@ -135,7 +139,7 @@ const DashboardLayout = ({ children }) => {
             <div className="flex items-center space-x-4">
               <button
                 onClick={handleLogout}
-                className="bg-gradient-to-r from-red-500 to-pink-500 hover:from-pink-500 hover:to-red-500 text-white px-4 py-2 rounded-lg transition duration-300"
+                className="bg-gradient-to-r cursor-pointer from-red-500 to-pink-500 hover:from-pink-500 hover:to-red-500 text-white px-4 py-2 rounded-lg transition duration-300"
               >
                 Logout
               </button>

@@ -128,7 +128,7 @@ const TasksPage = () => {
         <h2 className="text-2xl font-semibold">My Tasks</h2>
         <button
           onClick={() => setShowForm(!showForm)}
-          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg"
+          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg cursor-pointer"
         >
           {showForm ? "Cancel" : "New Task"}
         </button>
@@ -176,7 +176,7 @@ const TasksPage = () => {
             <div className="mt-4 flex justify-end">
               <button
                 type="submit"
-                className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg"
+                className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg cursor-pointer"
               >
                 Create Task
               </button>
@@ -226,7 +226,7 @@ const TasksPage = () => {
                   {task.status !== "in-progress" && (
                     <button
                       onClick={() => handleStatusChange(task._id, "in-progress")}
-                      className="text-xs px-2 py-1 bg-yellow-100 text-yellow-800 rounded hover:bg-yellow-200"
+                      className="text-xs px-2 py-1 bg-yellow-100 text-yellow-800 rounded cursor-pointer hover:bg-yellow-200"
                     >
                       In Progress
                     </button>
@@ -234,7 +234,7 @@ const TasksPage = () => {
                   {task.status !== "completed" && (
                     <button
                       onClick={() => handleStatusChange(task._id, "completed")}
-                      className="text-xs px-2 py-1 bg-green-100 text-green-800 rounded hover:bg-green-200"
+                      className="text-xs px-2 py-1 cursor-pointer bg-green-100 text-green-800 rounded hover:bg-green-200"
                     >
                       Complete
                     </button>

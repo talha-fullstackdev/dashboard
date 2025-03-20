@@ -224,7 +224,7 @@ const AttendancePage = () => {
               className={`px-4 py-2 rounded-lg ${
                 todayAttendance
                   ? "bg-gray-300 cursor-not-allowed"
-                  : "bg-green-600 hover:bg-green-700 text-white"
+                  : "bg-green-600 hover:bg-green-700 text-white cursor-pointer"
               }`}
             >
               Check In
@@ -235,7 +235,7 @@ const AttendancePage = () => {
               className={`px-4 py-2 rounded-lg ${
                 !todayAttendance || todayAttendance.checkOut
                   ? "bg-gray-300 cursor-not-allowed"
-                  : "bg-red-600 hover:bg-red-700 text-white"
+                  : "bg-red-600 hover:bg-red-700 text-white cursor-pointer "
               }`}
             >
               Check Out
@@ -253,7 +253,7 @@ const AttendancePage = () => {
               <select
                 value={selectedMonth}
                 onChange={(e) => setSelectedMonth(parseInt(e.target.value))}
-                className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
               >
                 {months.map((month) => (
                   <option key={month.value} value={month.value}>
@@ -266,7 +266,7 @@ const AttendancePage = () => {
               <select
                 value={selectedYear}
                 onChange={(e) => setSelectedYear(parseInt(e.target.value))}
-                className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
               >
                 {years.map((year) => (
                   <option key={year} value={year}>

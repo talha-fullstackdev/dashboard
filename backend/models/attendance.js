@@ -7,6 +7,10 @@ const attendanceSchema = new Schema({
     ref: "users",
     required: true,
   },
+  username: {
+    type: String,
+    required: true
+  },
   date: {
     type: Date,
     default: Date.now,

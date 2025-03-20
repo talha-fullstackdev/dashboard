@@ -12,6 +12,16 @@ const AttendancePage = () => {
   const [todayAttendance, setTodayAttendance] = useState(null);
   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1);
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+  const [currentDateTime, setCurrentDateTime] = useState(new Date());
+
+  useEffect(() => {
+    // Update current time every second
+    const timer = setInterval(() => {
+      setCurrentDateTime(new Date());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   const fetchAttendanceHistory = async () => {
     try {
@@ -104,7 +114,31 @@ const AttendancePage = () => {
   const formatTime = (dateString) => {
     if (!dateString) return "N/A";
     const date = new Date(dateString);
-    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    
+    // Get hours (0-23)
+    let hours = date.getHours();
+    
+    // Convert to 12-hour format
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    
+    // Get minutes and pad with leading zero if needed
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    
+    return `${hours}:${minutes}${ampm}`;
+  };
+
+  const formatDate = (dateString) => {
+    if (!dateString) return "N/A";
+    const date = new Date(dateString);
+    
+    // Get month (1-12), day, and year
+    const month = date.getMonth() + 1; // getMonth() returns 0-11
+    const day = date.getDate();
+    const year = date.getFullYear();
+    
+    return `${month}/${day}/${year}`;
   };
 
   // Generate month options for the filter
@@ -150,7 +184,12 @@ const AttendancePage = () => {
 
   return (
     <DashboardLayout>
-      <h2 className="text-2xl font-semibold mb-6">Attendance Tracker</h2>
+      <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
+        <h2 className="text-2xl font-semibold">Attendance Tracker</h2>
+        <div className="bg-blue-50 px-4 py-2 rounded-lg text-blue-700 font-medium">
+          <p>{formatDate(currentDateTime)} | {formatTime(currentDateTime)}</p>
+        </div>
+      </div>
       
       {/* Today&apos;s Attendance Card */}
       <div className="bg-white rounded-lg shadow-md p-6 mb-8">
@@ -249,6 +288,7 @@ const AttendancePage = () => {
               <thead>
                 <tr className="bg-gray-100 text-gray-600 uppercase text-sm leading-normal">
                   <th className="py-3 px-6 text-left">Date</th>
+                  <th className="py-3 px-6 text-left">User</th>
                   <th className="py-3 px-6 text-left">Check In</th>
                   <th className="py-3 px-6 text-left">Check Out</th>
                   <th className="py-3 px-6 text-left">Duration</th>
@@ -272,7 +312,10 @@ const AttendancePage = () => {
                   return (
                     <tr key={record._id} className="border-b border-gray-200 hover:bg-gray-50">
                       <td className="py-3 px-6 text-left">
-                        {new Date(record.date).toLocaleDateString()}
+                        {formatDate(record.date)}
+                      </td>
+                      <td className="py-3 px-6 text-left">
+                        {record.username || "Unknown"}
                       </td>
                       <td className="py-3 px-6 text-left">
                         {formatTime(record.checkIn)}

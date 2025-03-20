@@ -1,9 +1,19 @@
 import attendanceModel from "../models/attendance.js";
+import userModel from "../models/user.js";
 
 // Mark check-in for the day
 export const checkIn = async (req, res) => {
   try {
     const userId = req.userId;
+    
+    // Find the user to get their name
+    const user = await userModel.findById(userId);
+    if (!user) {
+      return res.status(404).json({ 
+        msg: "User not found", 
+        success: false
+      });
+    }
     
     // Check if already checked in today
     const today = new Date();
@@ -28,6 +38,7 @@ export const checkIn = async (req, res) => {
     const checkInTime = new Date();
     const newAttendance = new attendanceModel({
       userId,
+      username: user.name,
       checkIn: checkInTime,
       date: today
     });

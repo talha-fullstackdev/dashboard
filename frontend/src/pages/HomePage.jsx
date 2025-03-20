@@ -1,34 +1,23 @@
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import useTitle from "../hooks/UseTitle";
-import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
+
 const HomePage = () => {
   const navigate = useNavigate();
-  const [loginUser, setLoginUser] = useState("");
+  
   useEffect(() => {
-    setLoginUser(localStorage.getItem("loggedInUser"));
-  }, []);
-  const handleLogout = () => {
-    toast.error("logout");
-    localStorage.removeItem("token");
-    localStorage.removeItem("loggedInUser");
-    setTimeout(() => {
-      navigate("/login");
-    }, 2000);
-  };
-  useTitle(`${loginUser} home page`);
+    // Redirect to dashboard after login
+    navigate("/dashboard");
+  }, [navigate]);
+  
+  useTitle("Redirecting to Dashboard");
+  
   return (
-    <div>
-      <h1 className="text-4xl mb-4 font-bold">
-        Welcome to home page {loginUser}
-      </h1>
-      <button
-        title="logout?"
-        onClick={handleLogout}
-        className="cursor-pointer ml-4 rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 hover:from-purple-500 hover:to-blue-500 text-white px-2 py-1 "
-      >
-        logout
-      </button>
+    <div className="flex justify-center items-center h-screen">
+      <div className="text-center">
+        <h1 className="text-2xl mb-4 font-bold">Redirecting to Dashboard...</h1>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mx-auto"></div>
+      </div>
     </div>
   );
 };

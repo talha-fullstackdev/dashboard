@@ -17,12 +17,7 @@ app.use(cors())
 // Routes
 app.use("/auth", authRouter);
 app.use("/dashboard", dashboardRouter);
-app.get("/",(req,res)=>{
-     res.send({
-        activeStatus:true,
-        error:false
-     })
-})
+
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
     console.log(`Server has started at http://localhost:${PORT}`);

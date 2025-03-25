@@ -9,7 +9,7 @@
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "/backend/server.js"
+        "dest": "/backend/indexjs.js"
       }
     ]
   }
